@@ -6,156 +6,174 @@
     <title>Front-End Developer Portfolio</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Add this CSS to your styles or in a <style> tag in the <head> */
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0.6;
-    pointer-events: none;
-    animation: bubble-animation linear infinite;
-}
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0.6;
+            pointer-events: none;
+            animation: bubble-animation linear infinite;
+        }
 
-@keyframes bubble-animation {
-    0% {
-        transform: translateY(100vh) scale(0.5);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(-10vh) scale(1.5);
-        opacity: 0;
-    }
-}
-/* Add this CSS to your styles or in a <style> tag in the <head> */
-    #profile-photo {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        @keyframes bubble-animation {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
 
-#profile-photo:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-/* Add this CSS to your styles or in a <style> tag in the <head> */
-    #profile-photo {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        #profile-photo {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-#profile-photo:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
+        #profile-photo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
 
+        @media (max-width: 640px) {
+            .bubble {
+                display: none;
+            }
 
-
+            #profile-photo {
+                width: 96px;
+                height: 96px;
+            }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800">
     <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 p-4 fixed w-full z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-white text-3xl font-bold">MD Akib</a>
-            <div class="space-x-4">
-                <a href="#about" class="text-white hover:text-yellow-300">About</a>
-                <a href="#skills" class="text-white hover:text-yellow-300">Skills</a>
-                <a href="#portfolio" class="text-white hover:text-yellow-300">Portfolio</a>
-                <a href="#contact" class="text-white hover:text-yellow-300">Contact</a>
+            <a href="#" class="text-white text-2xl sm:text-3xl font-bold">MD Akib</a>
+            <button id="navbar-toggle" class="text-white sm:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <div id="navbar-menu" class="hidden sm:flex space-x-2 sm:space-x-4">
+                <a href="#about" class="text-white text-sm sm:text-base hover:text-yellow-300">About</a>
+                <a href="#skills" class="text-white text-sm sm:text-base hover:text-yellow-300">Skills</a>
+                <a href="#portfolio" class="text-white text-sm sm:text-base hover:text-yellow-300">Portfolio</a>
+                <a href="#contact" class="text-white text-sm sm:text-base hover:text-yellow-300">Contact</a>
             </div>
         </div>
     </nav>
 
- 
- <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-400 to-blue-500 overflow-hidden">
-    <div class="absolute inset-0">
-        <canvas id="bubbles" class="w-full h-full"></canvas>
-    </div>
-    <div class="relative z-10 text-center">
-        <h1 class="text-5xl font-bold text-blue-500">Hello, I'm a Front-End Developer</h1>
-        <p class="text-2xl text-blue-500 mt-4">I create beautiful and functional websites</p>
-        <!-- Profile Photo -->
-        <div class="mt-8">
-            <img id="profile-photo" src="./ff41252d-78aa-4a9d-9359-0f49fde903b0.jpeg" alt="Profile Photo" class="w-48 h-48 rounded-full mx-auto object-cover shadow-lg">
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="sm:hidden fixed inset-0 bg-gray-800 bg-opacity-75 z-40 hidden">
+        <div class="flex justify-end p-4">
+            <button id="mobile-menu-close" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
         </div>
-        <!-- Button below the profile photo -->
-        <div class="mt-8">
-            <a href="#portfolio" class="inline-block bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-blue-500 hover:text-white transition">View My Work</a>
+        <div class="flex flex-col items-center mt-8">
+            <a href="#about" class="text-white text-xl py-2">About</a>
+            <a href="#skills" class="text-white text-xl py-2">Skills</a>
+            <a href="#portfolio" class="text-white text-xl py-2">Portfolio</a>
+            <a href="#contact" class="text-white text-xl py-2">Contact</a>
         </div>
     </div>
-</section>
 
 
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-r from-cyan-400 to-blue-500 overflow-hidden">
+        <div class="absolute inset-0">
+            <canvas id="bubbles" class="w-full h-full"></canvas>
+        </div>
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-3xl sm:text-5xl font-bold text-blue-500">Hello, I'm a Front-End Developer</h1>
+            <p class="text-lg sm:text-2xl text-blue-500 mt-4">I create beautiful and functional websites</p>
+            <!-- Profile Photo -->
+            <div class="mt-8">
+                <img id="profile-photo" src="./ff41252d-78aa-4a9d-9359-0f49fde903b0.jpeg" alt="Profile Photo" class="w-32 h-32 sm:w-48 sm:h-48 rounded-full mx-auto object-cover shadow-lg">
+            </div>
+            <!-- Button below the profile photo -->
+            <div class="mt-8">
+                <a href="#portfolio" class="inline-block bg-green-500 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-blue-500 hover:text-white transition">View My Work</a>
+            </div>
+        </div>
+    </section>
 
-<section id="about" class="py-20 bg-gray-100">
-    <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-bold text-gray-800">About Me</h2>
-        <p class="mt-4 text-gray-600">Hello! I'm <strong>Your Name</strong>, a passionate Front-End Web Developer with a love for creating visually appealing and user-friendly websites. With a solid foundation in web technologies and a keen eye for design, I strive to deliver exceptional user experiences through my work.</p>
-        
-        <h3 class="text-3xl font-semibold text-gray-800 mt-8">My Journey</h3>
-        <p class="mt-4 text-gray-600">I began my journey in web development with a fascination for how websites are built and how they function. Over the years, I have honed my skills in HTML, CSS, and JavaScript, and have embraced modern frameworks like React and Tailwind CSS to enhance my development capabilities.</p>
-        
-        <h3 class="text-3xl font-semibold text-gray-800 mt-8">Skills and Expertise</h3>
-        <p class="mt-4 text-gray-600">I specialize in:</p>
-        <ul class="list-disc list-inside mt-4 text-gray-600">
-            <li>Responsive Web Design</li>
-            <li>Cross-Browser Compatibility</li>
-            <li>Performance Optimization</li>
-            <li>Interactive UI/UX Design</li>
-            <li>JavaScript Frameworks (React, Vue.js)</li>
-            <li>CSS Frameworks (Tailwind CSS, Bootstrap)</li>
-        </ul>
-        
-        <h3 class="text-3xl font-semibold text-gray-800 mt-8">My Approach</h3>
-        <p class="mt-4 text-gray-600">I believe in a user-centered approach to design and development. By understanding the needs and behaviors of users, I create intuitive and engaging interfaces that not only look great but also function seamlessly across all devices. My goal is to bring creativity and technical expertise to every project I work on.</p>
-        
-        <h3 class="text-3xl font-semibold text-gray-800 mt-8">Let's Connect</h3>
-        <p class="mt-4 text-gray-600">I'm always excited to collaborate on new projects and opportunities. Feel free to reach out to me if you have any questions or if you'd like to discuss how we can work together to bring your ideas to life!</p>
-    </div>
-</section>
+    <section id="about" class="py-20 bg-gray-100 px-4 sm:px-0">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800">About Me</h2>
+            <p class="mt-4 text-gray-600">Hello! I'm <strong>Your Name</strong>, a passionate Front-End Web Developer with a love for creating visually appealing and user-friendly websites. With a solid foundation in web technologies and a keen eye for design, I strive to deliver exceptional user experiences through my work.</p>
 
+            <h3 class="text-2xl sm:text-3xl font-semibold text-gray-800 mt-8">My Journey</h3>
+            <p class="mt-4 text-gray-600">I began my journey in web development with a fascination for how websites are built and how they function. Over the years, I have honed my skills in HTML, CSS, and JavaScript, and have embraced modern frameworks like React and Tailwind CSS to enhance my development capabilities.</p>
+
+            <h3 class="text-2xl sm:text-3xl font-semibold text-gray-800 mt-8">Skills and Expertise</h3>
+            <p class="mt-4 text-gray-600">I specialize in:</p>
+            <ul class="list-disc list-inside mt-4 text-gray-600">
+                <li>Responsive Web Design</li>
+                <li>Cross-Browser Compatibility</li>
+                <li>Performance Optimization</li>
+                <li>Interactive UI/UX Design</li>
+                <li>JavaScript Frameworks (React, Vue.js)</li>
+                <li>CSS Frameworks (Tailwind CSS, Bootstrap)</li>
+            </ul>
+
+            <h3 class="text-2xl sm:text-3xl font-semibold text-gray-800 mt-8">My Approach</h3>
+            <p class="mt-4 text-gray-600">I believe in a user-centered approach to design and development. By understanding the needs and behaviors of users, I create intuitive and engaging interfaces that not only look great but also function seamlessly across all devices. My goal is to bring creativity and technical expertise to every project I work on.</p>
+
+            <h3 class="text-2xl sm:text-3xl font-semibold text-gray-800 mt-8">Let's Connect</h3>
+            <p class="mt-4 text-gray-600">I'm always excited to collaborate on new projects and opportunities. Feel free to reach out to me if you have any questions or if you'd like to discuss how we can work together to bring your ideas to life!</p>
+        </div>
+    </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
+    <section id="skills" class="py-20 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 sm:px-0">
         <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold text-blue-500">My Skills</h2>
-            <div class="flex justify-center space-x-8 mt-8">
+            <h2 class="text-3xl sm:text-4xl font-bold text-blue-500">My Skills</h2>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-8 mt-8">
                 <div>
-                    <h3 class="text-2xl font-semibold text-blue-500">HTML</h3>
+                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-500">HTML</h3>
                     <p class="mt-2 text-blue-500">Advanced</p>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-semibold text-blue-500">CSS</h3>
+                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-500">CSS</h3>
                     <p class="mt-2 text-blue-500">Advanced</p>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-semibold text-blue-500">JavaScript</h3>
+                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-500">JavaScript</h3>
                     <p class="mt-2 text-blue-500">Intermediate</p>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-semibold text-blue-500">Tailwind CSS</h3>
-                    <p class="mt-2 text-blue-500" >Intermediate</p>
+                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-500">Tailwind CSS</h3>
+                    <p class="mt-2 text-blue-500">Intermediate</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-gray-100">
+    <section id="portfolio" class="py-20 bg-gray-100 px-4 sm:px-0">
         <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold text-gray-800">My Portfolio</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800">My Portfolio</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                 <div class="bg-white p-4 rounded-lg shadow-md">
-                    <img src="project1.jpg" alt="Project 1" class="w-full h-48 object-cover rounded-lg">
-                    <h3 class="text-xl font-semibold mt-4">Project Title 1</h3>
+                    <img src="project1.jpg" alt="Project 1" class="w-full h-40 sm:h-48 object-cover rounded-lg">
+                    <h3 class="text-lg sm:text-xl font-semibold mt-4">Project Title 1</h3>
                     <p class="text-gray-600">Short project description.</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg shadow-md">
-                    <img src="project2.jpg" alt="Project 2" class="w-full h-48 object-cover rounded-lg">
-                    <h3 class="text-xl font-semibold mt-4">Project Title 2</h3>
+                    <img src="project2.jpg" alt="Project 2" class="w-full h-40 sm:h-48 object-cover rounded-lg">
+                    <h3 class="text-lg sm:text-xl font-semibold mt-4">Project Title 2</h3>
                     <p class="text-gray-600">Short project description.</p>
                 </div>
                 <div class="bg-white p-4 rounded-lg shadow-md">
-                    <img src="project3.jpg" alt="Project 3" class="w-full h-48 object-cover rounded-lg">
-                    <h3 class="text-xl font-semibold mt-4">Project Title 3</h3>
+                    <img src="project3.jpg" alt="Project 3" class="w-full h-40 sm:h-48 object-cover rounded-lg">
+                    <h3 class="text-lg sm:text-xl font-semibold mt-4">Project Title 3</h3>
                     <p class="text-gray-600">Short project description.</p>
                 </div>
             </div>
@@ -163,80 +181,78 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gradient-to-r from-green-400 to-teal-500 text-white">
+    <section id="contact" class="py-20 bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 sm:px-0">
         <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold">Contact Me</h2>
-            <p class="mt-4">Interested in working together? Let's connect!</p>
-            <form class="mt-8 space-y-4 max-w-md mx-auto">
-                <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-white text-gray-800">
-                <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-white text-gray-800">
-                <textarea placeholder="Your Message" class="w-full p-3 rounded-lg bg-white text-gray-800"></textarea>
-                <button type="submit" class="w-full bg-white text-green-500 py-3 px-6 rounded-lg hover:bg-green-500 hover:text-white transition">Send Message</button>
+            <h2 class="text-3xl sm:text-4xl font-bold">Get in Touch</h2>
+            <p class="mt-4">I'd love to hear from you! Whether you have a question, a project idea, or just want to say hello, feel free to reach out.</p>
+            <form action="#" method="POST" class="mt-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" name="name" placeholder="Your Name" class="w-full p-4 rounded-lg border border-gray-300 text-gray-800">
+                    <input type="email" name="email" placeholder="Your Email" class="w-full p-4 rounded-lg border border-gray-300 text-gray-800">
+                </div>
+                <textarea name="message" placeholder="Your Message" class="w-full p-4 rounded-lg border border-gray-300 text-gray-800 mt-4"></textarea>
+                <button type="submit" class="bg-yellow-400 text-gray-800 py-3 px-6 rounded-lg hover:bg-yellow-500 transition mt-4">Send Message</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-4">
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
-    </footer>
-    <script>
+      <!-- Scripts -->
+      <script>
         // JavaScript for bubble animation
-document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById("bubbles");
-    const ctx = canvas.getContext("2d");
+        document.addEventListener("DOMContentLoaded", () => {
+            const canvas = document.getElementById("bubbles");
+            const ctx = canvas.getContext("2d");
 
-    // Resize canvas to full viewport
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+            // Resize canvas to full viewport
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-    const colors = ['#ff66b2', '#ffcc99', '#66b3ff', '#99ff99', '#ffccff'];
+            const colors = ['#ff66b2', '#ffcc99', '#66b3ff', '#99ff99', '#ffccff'];
 
-    function createBubble() {
-        const size = Math.random() * 50 + 10; // Random size between 10 and 60
-        const x = Math.random() * canvas.width;
-        const y = canvas.height;
-        const speed = Math.random() * 3 + 1; // Random speed between 1 and 4
+            function createBubble() {
+                const size = Math.random() * 50 + 10; // Random size between 10 and 60
+                const x = Math.random() * canvas.width;
+                const y = canvas.height;
+                const speed = Math.random() * 3 + 1; // Random speed between 1 and 4
 
-        return { x, y, size, speed, color: colors[Math.floor(Math.random() * colors.length)] };
-    }
-
-    function drawBubble(bubble) {
-        ctx.beginPath();
-        ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
-        ctx.fillStyle = bubble.color;
-        ctx.fill();
-    }
-
-    function updateBubble(bubble) {
-        bubble.y -= bubble.speed;
-        if (bubble.y < -bubble.size) {
-            return false;
-        }
-        return true;
-    }
-
-    const bubbles = Array.from({ length: 100 }, createBubble);
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        for (let i = bubbles.length - 1; i >= 0; i--) {
-            const bubble = bubbles[i];
-            if (!updateBubble(bubble)) {
-                bubbles.splice(i, 1, createBubble());
+                return { x, y, size, speed, color: colors[Math.floor(Math.random() * colors.length)] };
             }
-            drawBubble(bubble);
-        }
 
-        requestAnimationFrame(animate);
-    }
+            function drawBubble(bubble) {
+                ctx.beginPath();
+                ctx.arc(bubble.x, bubble.y, bubble.size, 0, Math.PI * 2);
+                ctx.fillStyle = bubble.color;
+                ctx.fill();
+            }
 
-    animate();
-});
+            function updateBubble(bubble) {
+                bubble.y -= bubble.speed;
+                if (bubble.y < -bubble.size) {
+                    return false;
+                }
+                return true;
+            }
 
-    </script>
-    <script>// JavaScript for interactive profile photo
+            const bubbles = Array.from({ length: 100 }, createBubble);
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                for (let i = bubbles.length - 1; i >= 0; i--) {
+                    const bubble = bubbles[i];
+                    if (!updateBubble(bubble)) {
+                        bubbles.splice(i, 1, createBubble());
+                    }
+                    drawBubble(bubble);
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+
+        // JavaScript for interactive profile photo
         document.addEventListener("DOMContentLoaded", () => {
             const profilePhoto = document.getElementById('profile-photo');
         
@@ -263,6 +279,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 profilePhoto.style.transform = 'rotateX(0deg) rotateY(0deg)';
             });
         });
-        </script>
+    </script>
+
+    <script> // JavaScript for Navbar Toggle
+        document.getElementById('navbar-toggle').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.getElementById('mobile-menu-close').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        });</script>
 </body>
 </html>
